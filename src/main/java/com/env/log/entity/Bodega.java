@@ -40,6 +40,16 @@ public class Bodega {
     @OneToMany(mappedBy ="bodega")
     private List<EnvioCamiones> envios_bodega;
 
+	
+    
+    
+    
+    @Override
+	public String toString() {
+		return "Bodega [id_bodega=" + id_bodega + ", nombre_bodega=" + nombre_bodega + ", codigo_bodega="
+				+ codigo_bodega + ", ciudad_bodega=" + ciudad_bodega + ", envios_bodega=" + envios_bodega + "]";
+	}
+
 	public Long getId_bodega() {
 		return id_bodega;
 	}

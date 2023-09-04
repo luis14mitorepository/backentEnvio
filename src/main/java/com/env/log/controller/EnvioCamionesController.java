@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import com.env.log.loggs.Logs;
 import com.env.log.services.ValidarCampos;
 
-
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping("/")
 public class EnvioCamionesController {
