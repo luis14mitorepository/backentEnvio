@@ -1,5 +1,4 @@
-package com.env.log.entity;
-
+package com.env.log.security.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -11,18 +10,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Set;
 
-@Data
+import com.env.log.entity.EnvioCamiones;
+
+
+
+@Builder@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
-@Table(name = "user")
-public class User{
+@Table(name = "users")
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_user;
+    private Long id;
 
     @Email
     @NotBlank
@@ -35,20 +38,21 @@ public class User{
 
     @NotBlank
     private String password;
-  
+    
+    
     @OneToMany(mappedBy ="user")
     private List<EnvioCamiones> envios;
 
-    
-     
-    
-    
-	public Long getId_user() {
-		return id_user;
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = RoleEntity.class, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleEntity> roles;
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_user(Long id_user) {
-		this.id_user = id_user;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getEmail() {
@@ -83,12 +87,16 @@ public class User{
 		this.envios = envios;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id_user=" + id_user + ", email=" + email + ", username=" + username + ", password=" + password
-				+ ", envios=" + envios + "]";
+	public Set<RoleEntity> getRoles() {
+		return roles;
 	}
 
-	
-   
+	public void setRoles(Set<RoleEntity> roles) {
+		this.roles = roles;
+	}
+    
+    
+    
+    
+    
 }

@@ -3,6 +3,9 @@ package com.env.log.entity;
 
 
 import java.sql.Date;
+
+import com.env.log.security.entity.UserEntity;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -54,7 +57,7 @@ public class EnvioCamiones {
 	 
 	@ManyToOne
 	@JoinColumn(name = "id_user")
-    private User user;
+    private UserEntity user;
 	
 	
 	@ManyToOne
@@ -129,14 +132,6 @@ public class EnvioCamiones {
 		this.numero_guia = numero_guia;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	public Bodega getBodega() {
 		return bodega;
 	}
@@ -153,6 +148,16 @@ public class EnvioCamiones {
 		this.producto_camiones = producto_camiones;
 	}
 
+	public UserEntity getUser() {
+		return user;
+	}
+
+	public void setUser(UserEntity user) {
+		this.user = user;
+	}
+	
+	
+	
 	
 	
 }

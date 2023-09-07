@@ -4,6 +4,8 @@ package com.env.log.entity;
 
 import java.sql.Date;
 
+import com.env.log.security.entity.UserEntity;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -58,7 +60,7 @@ public class EnvioMaritimo {
 	@NotNull(message = "el campo id_user  no puede estar vacio o tener datos invalidos") 
 	@ManyToOne
 	@JoinColumn(name = "id_user")
-    private User user;
+    private UserEntity user;
 	
 	@NotNull(message = "el campo id_puerto  no puede estar vacio o tener datos invalidos")
 	@ManyToOne
@@ -134,11 +136,13 @@ public class EnvioMaritimo {
 		this.numero_guia = numero_guia;
 	}
 
-	public User getUser() {
+	
+
+	public UserEntity getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserEntity user) {
 		this.user = user;
 	}
 
